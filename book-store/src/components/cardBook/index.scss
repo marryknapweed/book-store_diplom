@@ -1,0 +1,58 @@
+
+.new-book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Промежуток между изображением и информацией */
+  padding: 20px; /* Отступы внутри карточки */
+  max-width: 352px; /* Устанавливаем максимальную ширину карточки */
+  border: 1px solid #E7E7E7;
+}
+
+.new-book-card__image {
+  width: 100%;
+  height: 264px;
+  overflow: hidden;
+  background-color: #A8A8A8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-book-card__image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.new-book-card__info {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 8px;
+  flex: 1;
+}
+
+.info__title {
+  color: #313037;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 32px;
+}
+
+.info__subtitle {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  color: #A8A8A8;
+}
+
+.new-book-card__price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.price__text p {
+  color: #313037;
+}

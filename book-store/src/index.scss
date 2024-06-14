@@ -1,0 +1,35 @@
+@import 'bootstrap/scss/bootstrap';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #313037;
+  background-color: #FFFFFF;
+  min-height: 100vh;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
