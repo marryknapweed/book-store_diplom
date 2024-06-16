@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-// export function SearchForm () {
-//   return (
-//     <form className="header__search">
-//       <input type="text" placeholder="Search..." />
-//     </form>
-//   )
-// }
-
 export const SearchForm: React.FC = () => {
   const [search, setSearch] = useState('')
   const navigate = useNavigate()

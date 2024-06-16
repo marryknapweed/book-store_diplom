@@ -7,7 +7,13 @@ export interface Book {
   url: string;
 }
 
+// export interface FetchBooksResponse {
+//   books: Book[];
+// }
+
 export interface FetchBooksResponse {
+  total: string;
+  page: string;
   books: Book[];
 }
 
