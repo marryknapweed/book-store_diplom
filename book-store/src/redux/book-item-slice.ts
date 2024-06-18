@@ -6,7 +6,7 @@ const initialState: BookItemState = {
   list: null,
   isLoading: false,
   error: null,
-  activeTab: 'Description'
+  activeTab: null
 
 }
 
@@ -23,7 +23,7 @@ export const bookItemSlice = createSlice({
   name: 'bookItem',
   initialState,
   reducers: {
-    setActiveTab: (state, action) => {
+    setActiveTab: (state, action: PayloadAction<string>) => {
       state.activeTab = action.payload
     }
   },

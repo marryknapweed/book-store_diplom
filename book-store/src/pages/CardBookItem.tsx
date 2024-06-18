@@ -3,7 +3,7 @@ import { Title } from '../components/Title'
 import { CardBookItem } from '../components/cardBookItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchBookById } from '../redux/book-item-slice'
+import { fetchBookById, setActiveTab } from '../redux/book-item-slice'
 import { RootState, AppDispatch } from '../redux/store'
 
 export function CardBookItemPage () {
@@ -12,6 +12,13 @@ export function CardBookItemPage () {
   const book = useSelector((state: RootState) => state.bookItem.list)
   const isLoading = useSelector((state: RootState) => state.bookItem.isLoading)
   const error = useSelector((state: RootState) => state.bookItem.error)
+
+  useEffect(() => {
+    // Сброс активного таба при размонтировании компонента
+    return () => {
+      dispatch(setActiveTab(''))
+    }
+  }, [dispatch])
 
   useEffect(() => {
     if (isbn13) {
