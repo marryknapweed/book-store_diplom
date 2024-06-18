@@ -19,19 +19,22 @@ export function NewBooksList () {
   function renderBooks () {
     if (isLoading) return <div>Loading...</div>
     if (error) return <div className='alert alert-danger'>{error}</div>
+    if (!Array.isArray(books)) return <div>No books available</div>
 
     return (
       <>
         <div className='grid-container'>
-          {books.map((book) => (
-            <CardBook
-              key={book.isbn13}
-              title={book.title}
-              subtitle={book.subtitle || ''}
-              image={book.image}
-              price={book.price}
-            />
+          {books?.map((book) => (
+          <CardBook
+            key={book.isbn13}
+            isbn13={book.isbn13} // TODO: fix
+            title={book.title}
+            subtitle={book.subtitle || ''}
+            image={book.image}
+            price={book.price}
+          />
           ))}
+
         </div>
       </>
     )

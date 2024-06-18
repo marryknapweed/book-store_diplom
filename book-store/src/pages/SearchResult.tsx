@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { fetchBooks } from '../redux/book-slice'
-import { RootState } from '../redux/store'
+import { RootState, AppDispatch } from '../redux/store'
 import { Book } from '../types/interfaces'
 import { CardBook } from '../components/cardBook'
 
@@ -11,7 +11,7 @@ import { CardBook } from '../components/cardBook'
 // }
 
 export const SearchResultsPage: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { query } = useParams<{ query: string }>()
   // const posts = useSelector((state: RootState) => state.books.list)
   // const error = useSelector((state: RootState) => state.books.error)
@@ -36,7 +36,7 @@ export const SearchResultsPage: React.FC = () => {
       return <div>No results found for «{query}»</div>
     }
 
-    return books.map((book: Book) => <CardBook key={book.isbn13} book={book} />)
+    return books.map((book: Book) => <CardBook key={book.id} book={book} />)
   }
 
   return (
@@ -50,10 +50,3 @@ export const SearchResultsPage: React.FC = () => {
     </div>
   )
 }
-
-// .grid-container {
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   grid-template-rows: repeat(6, auto);
-//   gap: 20px;
-// }
