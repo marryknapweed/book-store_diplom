@@ -36,7 +36,7 @@ export const SearchResultsPage: React.FC = () => {
       return <div>No results found for «{query}»</div>
     }
 
-    return books.map((book: Book) => <CardBook key={book.id} book={book} />)
+    return books.map((book: Book) => <CardBook key={book.isbn13} {...book} />)
   }
 
   return (

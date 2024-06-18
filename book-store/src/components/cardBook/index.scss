@@ -1,11 +1,13 @@
 
+
 .new-book-card {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
   gap: 20px; /* Промежуток между изображением и информацией */
   padding: 20px; /* Отступы внутри карточки */
-  max-width: 352px; /* Устанавливаем максимальную ширину карточки */
+  // max-width: 352px; /* Устанавливаем максимальную ширину карточки */
   border: 1px solid #E7E7E7;
+  // height: 100%;
 }
 
 .new-book-card__image {
@@ -16,6 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .new-book-card__image img {
@@ -24,10 +27,15 @@
 }
 
 .new-book-card__info {
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+  display: flex; /* Используем flex для выравнивания по вертикали */
+  flex-direction: column; /* Располагаем элементы в колонку */
+  justify-content: space-between;
+
+  // display: grid;
+  // grid-template-rows: 1fr 1fr;
+  // height: 40%;
   gap: 8px;
-  flex: 1;
+  // flex: 1;
 }
 
 .info__title {
@@ -46,13 +54,10 @@
 }
 
 .new-book-card__price {
+  margin-top: auto; /* Перемещаем цену в самый низ */
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
   line-height: 32px;
   font-weight: bold;
-  text-align: left;
-}
-
-.price__text p {
   color: #313037;
 }

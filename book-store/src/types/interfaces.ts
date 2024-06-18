@@ -25,7 +25,7 @@ export interface BooksState {
 
 export interface CardBookProps {
   title: string
-  subtitle: string
+  subtitle?: string
   image: string
   price: number | string
   isbn13: string

@@ -8,10 +8,20 @@ const initialState: BooksState = {
   error: null
 }
 
-export const fetchBooks = createAsyncThunk('book/fetchBooks', async (_, { rejectWithValue }) => {
+// export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
+//   try {
+//     // const data = await requestBooks({ ...params })
+//     // return data.books
+//     return await requestBooks({ ...params })
+//   } catch (error) {
+//     return rejectWithValue('Failed to fetch books')
+//   }
+// })
+
+export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
   try {
-    const data = await requestBooks()
-    return data.books
+    const books = await requestBooks({ ...params })
+    return books.books
   } catch (error) {
     return rejectWithValue('Failed to fetch books')
   }

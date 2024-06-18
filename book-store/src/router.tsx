@@ -3,6 +3,7 @@ import { NewBooksPage } from './pages/NewBooks'
 import { Layout } from './components/Layout'
 import { SearchResultsPage } from './pages/SearchResult'
 import { CardBookItemPage } from './pages/CardBookItem'
+import { CardBookBasketPage } from './pages/CardBookBasket'
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ export const router = createBrowserRouter([
       {
         path: '/books/:id',
         element: <CardBookItemPage />
+      },
+
+      {
+        path: '/basket',
+        element: <CardBookBasketPage />
       }
 
     ]

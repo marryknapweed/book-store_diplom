@@ -8,7 +8,7 @@
 
 .books-item__image {
   width: 50%;
-  margin-right: 128px;
+  margin-right: 100px;
   background-color: #dedede;
   display: flex;
   justify-content: center;
@@ -54,13 +54,18 @@
   padding-left: 0px ;
   font-size: 20px;
   margin-bottom: 16px;
+  text-align: right;
 
   li {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 
     strong {
       color: #A8A8A8;
+      width: 50%;
+      text-align: left;
+
     }
   }
 }
