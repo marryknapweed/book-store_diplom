@@ -2,13 +2,17 @@ import { BookDetailProps } from '../../types/interfaces'
 import { Title } from '../Title'
 import './index.scss'
 import { BookTabs } from '../bookTabs'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState, AppDispatch } from '../../redux/store'
 import { useState } from 'react'
+import { addItemToCart, removeItemFromCart } from '../../redux/cart-slice'
+import { QuantityControl } from '../QuantityControl'
 
 export const CardBookItem = ({ title, image, price, rating, authors, publisher, language, format, desc, pdf, year, isbn13, pages, isbn10, subtitle, url }: BookDetailProps) => {
   const activeTab = useSelector((state: RootState) => state.bookItem.activeTab)
   const [showMore, setShowMore] = useState(false)
+  const cartItems = useSelector((state: RootState) => state.cart.items)
+  const dispatch = useDispatch<AppDispatch>()
 
   const handlePreviewClick = (pdfKey: string) => {
     if (pdf && pdf[pdfKey]) {
@@ -19,6 +23,16 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
   const toggleShowMore = () => {
     setShowMore(prevState => !prevState)
   }
+
+  const handleAddToCart = () => {
+    dispatch(addItemToCart({ title, image, price, rating, authors, publisher, language, format, desc, pdf, year, isbn13, pages, isbn10, subtitle, url }))
+  }
+
+  const handleRemoveFromCart = () => {
+    dispatch(removeItemFromCart(isbn13))
+  }
+
+  const isInCart = cartItems.some(item => item.isbn13 === isbn13)
 
   return (
     <>
@@ -36,17 +50,12 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
             </div>
           </div>
           <ul className="books-detail__details">
-            {/* <li><strong>Authors: </strong>{authors}</li>
-            <li><strong>Publisher: </strong>{publisher}</li>
-            <li><strong>Language: </strong>{language}</li>
-            <li><strong>Format: </strong>{format}</li> */}
             {authors && <li><strong>Authors: </strong>{authors}</li>}
             {publisher && <li><strong>Publisher: </strong>{publisher}</li>}
             {language && <li><strong>Language: </strong>{language}</li>}
             {format && <li><strong>Format: </strong>{format}</li>}
           </ul>
 
-          {/* <button className="books-detail__more-details">More details &#9660;</button> */}
           <button className="books-detail__more-details" onClick={toggleShowMore}>
             {showMore ? 'Show less ▲' : 'More details ▼'}
           </button>
@@ -61,7 +70,21 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
               {url && <li><strong>URL: </strong><a href={url} target="_blank" rel="noopener noreferrer">{url}</a></li>}
             </ul>
           )}
-          <button className="books-detail__add-to-cart">Add to cart</button>
+
+          {isInCart
+            ? (
+          // <div className="books-item__cart-controls">
+          //   <button className="cart-control-button" onClick={handleRemoveFromCart}>-</button>
+          //   <span>{cartItems.filter(item => item.isbn13 === isbn13).length}</span>
+          //   <button className="cart-control-button" onClick={handleAddToCart}>+</button>
+          // </div>
+
+            <QuantityControl quantity={cartItems.filter(item => item.isbn13 === isbn13).length} onIncrement={handleAddToCart} onDecrement={handleRemoveFromCart} />
+              )
+            : (
+            <button className="books-detail__add-to-cart" onClick={handleAddToCart}>Add to cart</button>
+              )}
+
           {pdf && Object.keys(pdf).map((key) => (
             <a key={key} className="books-detail__preview" onClick={() => handlePreviewClick(key)}>Preview {key}</a>
           ))}

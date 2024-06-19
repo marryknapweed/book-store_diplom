@@ -1,5 +1,75 @@
 .basket-card {
   display: flex;
-  border: 1px solid #E7E7E7;
+  border-bottom: 1px solid #E7E7E7;
   justify-content: space-between;
+  align-items: center;
+  padding: 48px 0px;
+}
+
+.basket-card__image {
+  width: 256px;
+  height: 192px;
+  overflow: hidden;
+  background-color: #A8A8A8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.basket-card__info {
+  flex: 1;
+  margin: 0px 130px 0px 30px;
+
+  h3 {
+    font-size: 24px;
+  }
+}
+
+.basket-card__amount {
+  display: flex;
+  align-items: center;
+  // margin-top: 8px;
+  width: 168px;
+  justify-content: space-between;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  // padding: 16px;
+
+  .amount-button {
+    background: none;
+    // border: 1px solid #000;
+    font-size: 24px;
+    color: black;
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    .amount {
+      margin: 0 10px; // Adjust margin between buttons and amount text
+    }
+  }
+}
+
+.basket-card__price {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  margin-right: 112px;
+
+  .price__text {
+    margin: 0px;
+  }
+}
+
+.basket-card__remove {
+  font-size: 24px;
+  cursor: pointer;
 }
