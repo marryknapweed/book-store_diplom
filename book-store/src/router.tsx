@@ -4,6 +4,7 @@ import { Layout } from './components/Layout'
 import { SearchResultsPage } from './pages/SearchResult'
 import { CardBookItemPage } from './pages/CardBookItem'
 import { CardBookBasketPage } from './pages/CardBookBasket'
+import { CardBookFavoritePage } from './pages/CardBookFavorite'
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,11 @@ export const router = createBrowserRouter([
       {
         path: '/basket',
         element: <CardBookBasketPage />
+      },
+
+      {
+        path: '/favorites',
+        element: <CardBookFavoritePage />
       }
 
     ]

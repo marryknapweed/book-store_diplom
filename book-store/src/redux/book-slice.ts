@@ -6,6 +6,7 @@ const initialState: BooksState = {
   list: [],
   isLoading: false,
   error: null
+  // favorites: []
 }
 
 // export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
@@ -30,7 +31,16 @@ export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}
 export const bookSlice = createSlice({
   name: 'books',
   initialState,
-  reducers: {},
+  reducers: {
+    // addToFavorites: (state, action: PayloadAction<BookDetailProps>) => {
+    //   state.favorites.push(action.payload)
+    // },
+
+    // removeFromFavorites: (state, action: PayloadAction<string>) => {
+    //   state.favorites = state.favorites.filter(book => book.isbn13 !== action.payload)
+    // }
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBooks.pending, (state) => {
@@ -48,4 +58,5 @@ export const bookSlice = createSlice({
   }
 })
 
+// export const { addToFavorites, removeFromFavorites } = bookSlice.actions
 export const bookReducer = bookSlice.reducer

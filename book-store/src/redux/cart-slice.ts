@@ -8,10 +8,16 @@ import { BookDetailProps } from '../types/interfaces'
 
 interface CartState {
   items: (BookDetailProps & { quantity: number })[];
+  // sumTotal: number;
+  // VAT: number;
+  // total: number;
 }
 
 const initialState: CartState = {
   items: []
+  // sumTotal: 0,
+  // VAT: 0,
+  // total: 0
 }
 
 const cartSlice = createSlice({

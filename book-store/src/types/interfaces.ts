@@ -16,11 +16,24 @@ export interface FetchBooksResponse {
   page: string;
   books: Book[];
 }
+export interface BookDetailProps extends Book {
+  authors: string;
+  publisher: string;
+  isbn10: string;
+  pages: number;
+  year: string;
+  rating: number;
+  desc: string;
+  pdf?: Record<string, string>;
+  language: string,
+  format: string
+}
 
 export interface BooksState {
   list: Book[];
   isLoading: boolean;
   error: string | null;
+  // favorites: BookDetailProps[];
 }
 
 export interface CardBookProps {
@@ -35,22 +48,10 @@ export interface NewBooksListProps {
   books: Book[];
 }
 
-export interface BookDetailProps extends Book {
-  authors: string;
-  publisher: string;
-  isbn10: string;
-  pages: number;
-  year: string;
-  rating: number;
-  desc: string;
-  pdf?: Record<string, string>;
-  language: string,
-  format: string
-}
-
 export interface BookItemState {
   list: BookDetailProps | null;
   isLoading: boolean;
   error: string | null;
   activeTab: BookDetailProps | null
+  favorites: BookDetailProps[];
 }

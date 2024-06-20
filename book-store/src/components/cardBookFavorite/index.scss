@@ -1,0 +1,52 @@
+.favorite-card {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #E7E7E7;
+  align-items: center;
+  padding: 48px 0px;
+}
+
+.favorite-card__image {
+  width: 256px;
+  height: 192px;
+  overflow: hidden;
+  background-color: #A8A8A8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.favorite-card_info {
+  flex: 1;
+  margin: 0px 130px 0px 30px;
+
+  h3 {
+    font-size: 24px;
+  }
+}
+
+.favorite-card__price {
+  display: flex;
+  font-size: 24px;
+
+  .books-detail__rating {
+    margin-left: 187px;
+  }
+}
+
+.favorite-card__icon {
+  font-size: 18px;
+  padding: 16px;
+}
+
+.favorite-card__icon-active {
+  color: red;
+  cursor: pointer;
+  font-size: 24px;
+
+}

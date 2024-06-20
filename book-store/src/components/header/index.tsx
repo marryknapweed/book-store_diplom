@@ -13,7 +13,7 @@ export const Header = () => {
       </div>
       <SearchForm/>
       <div className="header__icons">
-        <NavLink to='/favourites'><SlHeart /></NavLink>
+        <NavLink to='/favorites'><SlHeart /></NavLink>
         <NavLink to='/basket'><SlBasket /></NavLink>
       </div>
     </header>
