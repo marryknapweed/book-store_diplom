@@ -19,14 +19,30 @@ const initialState: BooksState = {
 //   }
 // })
 
-export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
-  try {
-    const books = await requestBooks({ ...params })
-    return books.books
-  } catch (error) {
-    return rejectWithValue('Failed to fetch books')
+interface FetchBooksParams {
+  search: string;
+}
+
+export const fetchBooks = createAsyncThunk<Book[], FetchBooksParams, { rejectValue: string }>(
+  'books/fetchBooks',
+  async (params, { rejectWithValue }) => {
+    try {
+      const books = await requestBooks(params)
+      return books.books
+    } catch (error) {
+      return rejectWithValue('Failed to fetch books')
+    }
   }
-})
+)
+
+// export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
+//   try {
+//     const books = await requestBooks({ ...params })
+//     return books.books
+//   } catch (error) {
+//     return rejectWithValue('Failed to fetch books')
+//   }
+// })
 
 export const bookSlice = createSlice({
   name: 'books',
@@ -47,7 +63,7 @@ export const bookSlice = createSlice({
         state.isLoading = true
         state.error = null
       })
-      .addCase(fetchBooks.fulfilled, (state, action: PayloadAction<Book[]>) => {
+      .addCase(fetchBooks.fulfilled, (state, action) => {
         state.isLoading = false
         state.list = action.payload
       })

@@ -2,9 +2,9 @@ import React from 'react'
 import './index.scss'
 
 interface CartSummaryProps {
-  sumTotal: number
-  VAT: number
-  total: number
+  sumTotal: number;
+  VAT: number;
+  total: number;
 }
 
 export const CartSummary = ({ sumTotal, VAT, total }: CartSummaryProps) => {

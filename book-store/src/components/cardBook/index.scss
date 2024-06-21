@@ -54,6 +54,8 @@
 }
 
 .new-book-card__price {
+  display: flex;
+  justify-content: space-between;
   margin-top: auto; /* Перемещаем цену в самый низ */
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;

@@ -6,10 +6,6 @@ import { RootState, AppDispatch } from '../redux/store'
 import { Book } from '../types/interfaces'
 import { CardBook } from '../components/cardBook'
 
-// interface RouteParams {
-//   query: string;
-// }
-
 export const SearchResultsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { query } = useParams<{ query: string }>()
@@ -21,7 +17,7 @@ export const SearchResultsPage: React.FC = () => {
   const [searched, setSearched] = useState(false)
 
   useEffect(() => {
-    if (query !== '') {
+    if (query !== undefined && query !== '') {
       setSearched(true)
       dispatch(fetchBooks({ search: query }))
     }

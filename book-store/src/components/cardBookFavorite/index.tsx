@@ -26,14 +26,10 @@ export const CardBookFavorite = ({ title, image, subtitle, price, rating, isbn13
         <div className="favorite-card__price">
           <p className="price__text">{price}</p>
           <div className="books-detail__rating">
-              {'★'.repeat(rating) + '☆'.repeat(5 - rating)}
-            </div>
+            {'★'.repeat(rating) + '☆'.repeat(5 - rating)}
+          </div>
         </div>
       </div>
-
-      {/* <div className="favorite-card__icon">
-        <FaHeart/>
-      </div> */}
 
       <div className="books-item__favorite" onClick={handleToggleFavorite}>
         {isInFavorite ? <FaHeart className='favorite-card__icon-active' /> : <FaRegHeart />}

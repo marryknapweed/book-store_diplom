@@ -1,6 +1,5 @@
-// src/components/Cart.tsx
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Title } from '../components/Title'
 import { RootState } from '../redux/store'
 import { CardBookBasket } from '../components/cardBookBasket'
@@ -11,13 +10,14 @@ import { CartSummary } from '../components/сartSummary'
 export function CardBookBasketPage () {
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
+  // Вычисляем суммарные значения
   const { sumTotal, VAT, total } = cartItems.reduce(
     (acc, item) => {
-      const price = item.price ? parseFloat(item.price) : 0
+      const price = Number(item.price.replace('$', '')) // преобразование строки в число, удаляя символ доллара
       return {
-        sumTotal: acc.sumTotal + (price * item.quantity || 0),
-        VAT: acc.VAT + (price * item.quantity * 0.18 || 0),
-        total: acc.total + (price * item.quantity * 1.18 || 0)
+        sumTotal: acc.sumTotal + price * item.quantity,
+        VAT: acc.VAT + price * item.quantity * 0.18,
+        total: acc.total + price * item.quantity * 1.18
       }
     },
     { sumTotal: 0, VAT: 0, total: 0 }
@@ -28,14 +28,12 @@ export function CardBookBasketPage () {
       <Title>Shopping Cart</Title>
       {cartItems.length === 0
         ? (
-          <EmptyState icon={FaShoppingCart} text="Your basket is empty" />
+        <EmptyState icon={FaShoppingCart} text="Your basket is empty" />
           )
         : (
-            cartItems.map((item) => (
-          <CardBookBasket key={item.isbn13} {...item} />
-            ))
+            cartItems.map((item) => <CardBookBasket key={item.isbn13} {...item} />)
           )}
-          {cartItems.length > 0 && <CartSummary sumTotal={sumTotal} VAT={VAT} total={total} />}
+      {cartItems.length > 0 && <CartSummary sumTotal={sumTotal} VAT={VAT} total={total} />}
     </div>
   )
 }
