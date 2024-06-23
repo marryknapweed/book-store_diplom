@@ -29,7 +29,7 @@ export const SearchResultsPage: React.FC = () => {
     if (error) return <div className="alert alert-danger">{error}</div>
 
     if (!isLoading && books.length === 0) {
-      return <div>No results found for «{query}»</div>
+      return <div className="alert alert-info">No results found for «{query}»</div>
     }
 
     return (

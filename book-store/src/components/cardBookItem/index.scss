@@ -7,6 +7,7 @@
 
 .books-item__image {
   width: 50%;
+  height: 472px;
   margin-right: 100px;
   background-color: #dedede;
   display: flex;
@@ -109,12 +110,14 @@
   color: #FFFFFF;
   background-color: #313037;
   padding: 16px 0px;
-  margin-bottom: 40px;
+  border: 2px solid transparent;
+
 }
 
 .books-detail__preview {
   font-size: 20px;
   text-align: center;
+  margin-top: 20px;
 }
 
 
@@ -122,9 +125,9 @@
 .books-detail {
   display: flex;
   // align-items: center;
-  margin: auto;
+  // margin: auto;
   width: 100%;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 
   .books-detail__button {
     width: 50%;
@@ -133,7 +136,7 @@
     border: 2px solid #A8A8A8;
     font-size: 24px;
     font-family: 'Bebas Neue';
-    padding: 10px 0px;
+    padding: 16px 0px;
 
     // color: #E7E7E7;
     // border-radius: 30%;

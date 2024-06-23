@@ -5,7 +5,9 @@ import { BooksState, Book } from '../types/interfaces'
 const initialState: BooksState = {
   list: [],
   isLoading: false,
-  error: null
+  error: null,
+  limit: 10,
+  pagesCount: 0
 }
 
 // export const fetchBooks = createAsyncThunk('book/fetchBooks', async (params = {}, { rejectWithValue }) => {
@@ -68,6 +70,18 @@ export const searchBooks = createAsyncThunk(
   }
 )
 
+// export const searchBooks = createAsyncThunk(
+//   'books/searchBooks',
+//   async ({ query, page }: { query: string; page: number }, { rejectWithValue }) => {
+//     try {
+//       const response = await requestBooksSearch(query, page)
+//       return response
+//     } catch (error) {
+//       return rejectWithValue('Не удалось загрузить книги')
+//     }
+//   }
+// )
+
 export const bookSlice = createSlice({
   name: 'books',
   initialState,
@@ -94,6 +108,7 @@ export const bookSlice = createSlice({
       .addCase(searchBooks.fulfilled, (state, action) => {
         state.isLoading = false
         state.list = action.payload.books
+        state.pagesCount = Math.ceil(action.payload.count / state.limit)
       })
       .addCase(searchBooks.rejected, (state, action) => {
         state.isLoading = false

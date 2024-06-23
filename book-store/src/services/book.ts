@@ -11,6 +11,11 @@ async function requestBooksSearch (query: string) {
   return data
 }
 
+// async function requestBooksSearch (query: string, page: number) {
+//   const { data } = await client.get(`/search/${query}/${page}`)
+//   return data
+// }
+
 async function requestBooksItem (isbn13: string) {
   const { data } = await client.get(`/books/${isbn13}`)
   return data
