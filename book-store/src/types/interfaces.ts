@@ -29,7 +29,8 @@ export interface BooksState {
   list: Book[];
   isLoading: boolean;
   error: string | null;
-  // favorites: BookDetailProps[];
+  pagesCount: number;
+  limit: number;
 }
 
 export interface CardBookProps {

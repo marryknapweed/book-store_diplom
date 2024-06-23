@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchBooks } from '../redux/book-slice'
+import { searchBooks } from '../redux/book-slice'
 import { RootState, AppDispatch } from '../redux/store'
 import { Book } from '../types/interfaces'
 import { CardBook } from '../components/cardBook'
@@ -14,12 +14,12 @@ export const SearchResultsPage: React.FC = () => {
   // const isLoading = useSelector((state: RootState) => state.books.isLoading)
   const { list: books, isLoading, error } = useSelector((state: RootState) => state.books)
   // const sortOption = useSelector((state: RootState) => state.books.sortOption)
-  const [searched, setSearched] = useState(false)
+  // const [searched, setSearched] = useState(false)
 
   useEffect(() => {
     if (query !== undefined && query !== '') {
-      setSearched(true)
-      dispatch(fetchBooks({ search: query }))
+      // setSearched(true)
+      dispatch(searchBooks(query))
     }
   }, [dispatch, query])
 
@@ -28,7 +28,7 @@ export const SearchResultsPage: React.FC = () => {
 
     if (error) return <div className="alert alert-danger">{error}</div>
 
-    if (searched && books.length === 0) {
+    if (!isLoading && books.length === 0) {
       return <div>No results found for «{query}»</div>
     }
 

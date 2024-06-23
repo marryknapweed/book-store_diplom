@@ -24,7 +24,7 @@ export function NewBooksList () {
     return (
       <>
         <div className='grid-container'>
-          {books?.map((book) => (
+          {books?.map((book) => ( // TODO: fix
           <CardBook
             key={book.isbn13}
             isbn13={book.isbn13} // TODO: fix

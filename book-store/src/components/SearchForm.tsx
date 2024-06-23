@@ -15,7 +15,7 @@ export const SearchForm: React.FC = () => {
       alert('Enter your search term')
       return
     }
-    navigate(`/books/search/${search}`)
+    navigate(`search/${search}`)
   }
 
   return (
