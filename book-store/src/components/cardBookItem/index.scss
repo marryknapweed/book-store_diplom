@@ -145,109 +145,12 @@
   // height: 100%;
 }
 
-// .favorite-card__icon {
-//   color: red;
-//   z-index: 100;
-// }
+.book-details__similar-books-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
 
-
-// .books-item__content {
-//   display: flex;
-//   width: 100%;
-//   justify-content: space-between;
-//   margin-bottom: 72px;
-// }
-
-// .books-item__image {
-//   width: 50%;
-//   margin-right: 100px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: relative;
-
-//   img {
-//     height: 100%;
-//     object-fit: cover;
-//   }
-// }
-
-// .books-item__favorite {
-//   position: absolute;
-//   top: 0px;
-//   right: 0px;
-//   padding: 16px;
-//   cursor: pointer;
-
-//   .favorite-card__icon {
-//     font-size: 25px;
-//     color: black; /* Черное пустое сердце */
-//   }
-
-//   .favorite-card__icon-active {
-//     font-size: 25px;
-//     color: red; /* Красное заполненное сердце */
-//   }
-// }
-
-// .books-item__info {
-//   flex-grow: 1;
-//   border-top: 1px solid #E7E7E7;
-//   padding-top: 41px ;
-//   display: flex;
-//   width: 50%;
-//   flex-direction: column;
-// }
-
-// .books-item__price {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin-bottom: 24px;
-
-//   p {
-//     font-size: 40px;
-//     margin-bottom: 0px;
-//   }
-
-//   .books-detail__rating {
-//     font-size: 25px;
-//   }
-// }
-
-// .books-detail__details {
-//   padding-left: 0px;
-//   font-size: 20px;
-//   text-align: right;
-
-//   li {
-//     display: flex;
-//     justify-content: space-between;
-
-//     strong {
-//       color: #A8A8A8;
-//       width: 50%;
-//       text-align: left;
-//     }
-//   }
-// }
-
-// .books-detail__more-details {
-//   align-self: flex-start;
-//   margin-bottom: 59px;
-// }
-
-// .books-detail__add-to-cart {
-//   text-transform: uppercase;
-//   font-family: 'Bebas Neue';
-//   font-size: 24px;
-//   color: #FFFFFF;
-//   background-color: #313037;
-//   padding: 16px 0px;
-//   margin-bottom: 40px;
-// }
-
-// .books-detail__preview {
-//   font-size: 20px;
-//   text-align: center;
-// }
+.book-details__similar-book {
+  border: 1px solid #E7E7E7;
+}

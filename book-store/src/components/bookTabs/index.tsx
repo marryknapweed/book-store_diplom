@@ -27,10 +27,10 @@ export const BookTabs = () => {
       Authors
     </button>
     <button
-      className={`tab ${activeTab === 'Reviews' ? 'active' : ''}`}
-      onClick={() => handleTabClick('Reviews')}
+      className={`tab ${activeTab === 'Similar Books' ? 'active' : ''}`}
+      onClick={() => handleTabClick('Similar Books')}
     >
-      Reviews
+      Similar Books
     </button>
   </div>
   )

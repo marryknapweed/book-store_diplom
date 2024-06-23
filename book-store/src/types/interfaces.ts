@@ -5,6 +5,7 @@ export interface Book {
   price: string;
   image: string;
   url: string;
+  authors: string[];
 }
 
 export interface FetchBooksResponse {
@@ -13,7 +14,6 @@ export interface FetchBooksResponse {
   books: Book[];
 }
 export interface BookDetailProps extends Book {
-  authors: string;
   publisher: string;
   isbn10: string;
   pages: number;

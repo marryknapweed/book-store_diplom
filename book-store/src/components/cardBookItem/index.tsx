@@ -1,4 +1,4 @@
-import { BookDetailProps } from '../../types/interfaces'
+import { BookDetailProps, Book } from '../../types/interfaces'
 import { Title } from '../Title'
 import './index.scss'
 import { BookTabs } from '../bookTabs'
@@ -9,6 +9,7 @@ import { addItemToCart, removeItemFromCart } from '../../redux/cart-slice'
 import { FaRegHeart, FaHeart, FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import { QuantityControl } from '../QuantityControl'
 import { toggleItemInFavorites } from '../../redux/favorite-slice'
+import { CardBook } from '../cardBook'
 
 export const CardBookItem = ({ title, image, price, rating, authors, publisher, language, format, desc, pdf, year, isbn13, pages, isbn10, subtitle, url }: BookDetailProps) => {
   const activeTab = useSelector((state: RootState) => state.bookItem.activeTab)
@@ -16,6 +17,8 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
   const cartItems = useSelector((state: RootState) => state.cart.items)
   const favoriteItems = useSelector((state: RootState) => state.favorites.list)
   const dispatch = useDispatch<AppDispatch>()
+  const books = useSelector((state: RootState) => state.books.list)
+  const similarBooks = books.filter((book: Book) => book.isbn13 !== isbn13 && book.authors === authors)
 
   const handlePreviewClick = (pdfKey: string) => {
     if (pdf && pdf[pdfKey]) {
@@ -38,6 +41,12 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
   const handleToggleFavorite = () => {
     dispatch(toggleItemInFavorites({ title, image, subtitle, price, rating, isbn13 }))
   }
+
+  const getRandomBooks = (count: number) => {
+    const shuffledBooks = books.filter((book: Book) => book.isbn13 !== isbn13).sort(() => 0.5 - Math.random())
+    return shuffledBooks.slice(0, count)
+  }
+
   const isInCart = cartItems.some(item => item.isbn13 === isbn13)
   const isInFavorite = favoriteItems.some(item => item.isbn13 === isbn13)
 
@@ -67,7 +76,6 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
           </ul>
 
           <button className="books-detail__more-details" onClick={toggleShowMore}>
-            {/* {showMore ? `Show less ${<FaAngleDown />}` : `More details ${<FaAngleUp />}`} */}
             {showMore ? (<>Show less <FaAngleDown /> </>) : (<>More details <FaAngleUp /> </>)}
           </button>
 
@@ -100,7 +108,16 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
 
       {activeTab === 'Description' && <div className="books-detail__description">{desc}</div>}
       {activeTab === 'Authors' && <div className="books-detail__authors">{authors}</div>}
-      {activeTab === 'Reviews' && <div className="books-detail__reviews"></div>}
+      {/* {activeTab === 'Reviews' && <div className="books-detail__reviews"></div>} */}
+      {activeTab === 'Similar Books' && (
+        <div className="book-details__similar-books">
+          <ul className="book-details__similar-books-list">
+            {getRandomBooks(6).map((book: Book) => ( // Отображаем три случайные книги
+                <CardBook key={book.isbn13} {...book} />
+            ))}
+          </ul>
+        </div>
+      )}
     </>
   )
 }
