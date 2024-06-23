@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import './index.scss'
 import { CardBookProps } from '../../types/interfaces'
 import { Link } from 'react-router-dom'
-import { requestBooksItem } from '../../services/book'
+// import { requestBooksItem } from '../../services/book'
 
 export const CardBook = ({ title, image, subtitle, price, isbn13 }: CardBookProps) => {
-  const [rating, setRating] = useState<number>(0)
+  // const [rating, setRating] = useState<number>(0)
 
-  useEffect(() => {
-    const fetchRating = async () => {
-      const bookDetails = await requestBooksItem(isbn13)
-      setRating(bookDetails.rating)
-    }
+  // useEffect(() => {
+  //   const fetchRating = async () => {
+  //     const bookDetails = await requestBooksItem(isbn13)
+  //     setRating(bookDetails.rating)
+  //   }
 
-    fetchRating()
-  }, [isbn13])
+  //   fetchRating()
+  // }, [isbn13])
 
   return (
     <div className="new-book-card">
@@ -30,7 +30,7 @@ export const CardBook = ({ title, image, subtitle, price, isbn13 }: CardBookProp
       <div className="new-book-card__price">
         <p className="price__text">{price}</p>
         <div className="books-detail__rating">
-            {'★'.repeat(rating) + '☆'.repeat(5 - rating)}
+            {/* {'★'.repeat(rating) + '☆'.repeat(5 - rating)} */}
           </div>
       </div>
     </div>

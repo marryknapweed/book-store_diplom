@@ -32,15 +32,23 @@ export const SearchResultsPage: React.FC = () => {
       return <div>No results found for «{query}»</div>
     }
 
-    return books.map((book: Book) => <CardBook key={book.isbn13} {...book} />)
+    return (
+      <div className="row row-cols-md-3 g-3 ">
+        {books.map((book: Book) => (
+          <div key={book.isbn13} className="col">
+            <CardBook {...book} />
+          </div>
+        ))}
+      </div>
+    )
   }
 
   return (
-    <div className="search-books">
+    <div className="search-books ">
       <div className="search-books__title">
         <h1>Search Results for «{query}»</h1>
       </div>
-      <div className="search-books__results row row-cols-3">
+      <div className="search-books__results">
       {renderBooks()}
       </div>
     </div>
