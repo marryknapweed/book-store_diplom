@@ -8,34 +8,31 @@
 
 // export const SearchForm: React.FC = () => {
 //   const [search, setSearch] = useState('')
-//   const [autocompleteVisible, setAutocompleteVisible] = useState(false) // Состояние для управления видимостью списка
+//   const [autocompleteVisible, setAutocompleteVisible] = useState(false)
 //   const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([])
 //   const dispatch = useDispatch<AppDispatch>()
 //   const navigate = useNavigate()
-
 //   const books = useSelector((state: RootState) => state.books.list)
 //   const isLoading = useSelector((state: RootState) => state.books.isLoading)
 
-//   const handleChangeSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-//     setSearch(event.target.value)
-//     if (event.target.value !== '') {
-//       dispatch(searchBooks(event.target.value))
-//       setAutocompleteVisible(true) // Показываем список при вводе
-//     } else {
-//       setAutocompleteVisible(false) // Скрываем список при пустом вводе
-//       setAutocompleteResults([])
-//     }
-//   }
-
 //   useEffect(() => {
-//     if (search !== '') {
-//       setAutocompleteResults(books)
-//       setAutocompleteVisible(true) // Показываем список при наличии результатов поиска
-//     } else {
-//       setAutocompleteVisible(false) // Скрываем список при пустом вводе
-//       setAutocompleteResults([])
-//     }
-//   }, [books, search])
+//     const delayDebounceFn = setTimeout(() => {
+//       if (search !== '') {
+//         dispatch(searchBooks(search))
+//         setAutocompleteVisible(true)
+//       } else {
+//         setAutocompleteVisible(false)
+//         setAutocompleteResults([])
+//       }
+//     }, 1000) // Задержка в 1000 мс (1 секунда)
+
+//     return () => clearTimeout(delayDebounceFn)
+//   }, [search, dispatch])
+
+//   // Обновляем autocompleteResults при изменении books из Redux
+//   useEffect(() => {
+//     setAutocompleteResults(books)
+//   }, [books])
 
 //   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 //     event.preventDefault()
@@ -43,22 +40,22 @@
 //       alert('Enter your search term')
 //       return
 //     }
-//     navigate(`search/${search}`)
-//     setSearch('') // Очистка поля поиска после отправки формы
-//     setAutocompleteVisible(false) // Скрытие списка после отправки формы
+//     // navigate(`search/${search}`)
+//     setSearch('')
+//     setAutocompleteVisible(false)
 //   }
 
 //   const handleClickOutside = (event: MouseEvent) => {
 //     const target = event.target as HTMLElement
 //     if (!target.closest('.header__search')) {
-//       setAutocompleteVisible(false) // Скрыть список при клике вне области поиска
+//       setAutocompleteVisible(false)
 //     }
 //   }
 
 //   const handleItemClick = (isbn: string) => {
 //     navigate(`books/${isbn}`)
 //     setSearch('')
-//     setAutocompleteVisible(false) // Скрыть список при клике по элементу списка
+//     setAutocompleteVisible(false)
 //   }
 
 //   useEffect(() => {
@@ -95,8 +92,7 @@
 //           type="text"
 //           placeholder="Search..."
 //           value={search}
-//           onChange={handleChangeSearch}
-//           // onFocus={() => setAutocompleteVisible(true)} // Показываем список при фокусе на поле ввода
+//           onChange={(e) => setSearch(e.target.value)}
 //         />
 //         {autocompleteVisible && search && (
 //           <ul className='autocomplete'>
@@ -124,47 +120,49 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { searchBooks } from '../redux/book-slice'
 import { RootState, AppDispatch } from '../redux/store'
+import { requestBooksSearchAPI } from '../services/book' // Импорт функции requestBooksSearchAPI
 import { Book } from '../types/interfaces'
 import './seatch.scss'
 
 export const SearchForm: React.FC = () => {
   const [search, setSearch] = useState('')
   const [autocompleteVisible, setAutocompleteVisible] = useState(false)
-  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([])
-  const dispatch = useDispatch<AppDispatch>()
+  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([]) // Локальное состояние для результатов поиска
   const navigate = useNavigate()
-  const books = useSelector((state: RootState) => state.books.list)
   const isLoading = useSelector((state: RootState) => state.books.isLoading)
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+    const delayDebounceFn = setTimeout(async () => {
       if (search !== '') {
-        dispatch(searchBooks(search))
-        setAutocompleteVisible(true)
+        try {
+          const books = await requestBooksSearchAPI(search)
+          setAutocompleteResults(books) // Обновляем локальное состояние результатами поиска
+          setAutocompleteVisible(true)
+        } catch (error) {
+          console.error('Error fetching search results:', error)
+        }
       } else {
         setAutocompleteVisible(false)
-        setAutocompleteResults([])
+        setAutocompleteResults([]) // Очищаем результаты при пустом поисковом запросе
       }
-    }, 1000) // Задержка в 1000 мс (1 секунда)
+    }, 1000)
 
     return () => clearTimeout(delayDebounceFn)
-  }, [search, dispatch])
+  }, [search])
 
-  // Обновляем autocompleteResults при изменении books из Redux
-  useEffect(() => {
-    setAutocompleteResults(books)
-  }, [books])
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const input = event.target.value
+    setSearch(input)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (search === '') {
-      alert('Enter your search term')
+      alert('Введите поисковый запрос')
       return
     }
-    navigate(`search/${search}`)
-    setSearch('')
+    navigate(`/search/${search}`)
     setAutocompleteVisible(false)
   }
 
@@ -176,18 +174,10 @@ export const SearchForm: React.FC = () => {
   }
 
   const handleItemClick = (isbn: string) => {
-    navigate(`books/${isbn}`)
+    navigate(`/books/${isbn}`)
     setSearch('')
     setAutocompleteVisible(false)
   }
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
 
   const highlightSearchTerm = (text: string) => {
     const searchLower = search.toLowerCase()
@@ -208,6 +198,13 @@ export const SearchForm: React.FC = () => {
     )
   }
 
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside)
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
+
   return (
     <form className='search' onSubmit={handleSubmit}>
       <div className='header__search'>
@@ -215,7 +212,7 @@ export const SearchForm: React.FC = () => {
           type="text"
           placeholder="Search..."
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={handleInputChange}
         />
         {autocompleteVisible && search && (
           <ul className='autocomplete'>

@@ -18,7 +18,7 @@ export const CardBookItem = ({ title, image, price, rating, authors, publisher, 
   const favoriteItems = useSelector((state: RootState) => state.favorites.list)
   const dispatch = useDispatch<AppDispatch>()
   const books = useSelector((state: RootState) => state.books.list)
-  const similarBooks = books.filter((book: Book) => book.isbn13 !== isbn13 && book.authors === authors)
+  // const similarBooks = books.filter((book: Book) => book.isbn13 !== isbn13 && book.authors === authors)
 
   const handlePreviewClick = (pdfKey: string) => {
     if (pdf && pdf[pdfKey]) {
