@@ -1,13 +1,14 @@
 // src/redux/cart-slice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { BookDetailProps } from '../types/interfaces'
+import { getFromLocalStorage, setToLocalStorage } from '../utils/localStorageUtils'
 
 interface FavoriteState {
   list: BookDetailProps[];
 }
 
 const initialState: FavoriteState = {
-  list: []
+  list: getFromLocalStorage<BookDetailProps[]>('favorites') || [] // Извлекаем данные из localStorage при инициализации
 }
 
 const favoritesSlice = createSlice({
@@ -21,6 +22,7 @@ const favoritesSlice = createSlice({
       } else {
         state.list.push(action.payload)
       }
+      setToLocalStorage('favorites', state.list)
     }
   }
 })
