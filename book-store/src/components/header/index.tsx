@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { SlBasket, SlHeart } from 'react-icons/sl'
-import { SearchForm } from '../SearchForm'
+import { SearchForm } from '../searchForm'
 import './index.scss'
 import '../../index.scss'
 

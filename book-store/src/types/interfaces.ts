@@ -30,7 +30,6 @@ export interface BooksState {
   isLoading: boolean;
   error: string | null;
   pagesCount: number;
-  limit: number;
 }
 
 export interface CardBookProps {
