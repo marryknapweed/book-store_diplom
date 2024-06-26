@@ -15,11 +15,13 @@ const styles = {
     padding: '50px',
     textAlign: 'center' as const
   },
+
   icon: {
     fontSize: '50px',
     color: '#A8A8A8',
     marginBottom: '20px'
   },
+
   text: {
     fontSize: '24px',
     color: '#313037'

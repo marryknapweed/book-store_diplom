@@ -22,7 +22,7 @@ export const bookItemSlice = createSlice({
   name: 'bookItem',
   initialState,
   reducers: {
-    setActiveTab: (state, action: PayloadAction<string>) => {
+    setActiveTab: (state, action) => {
       state.activeTab = action.payload
     }
   },
@@ -31,13 +31,13 @@ export const bookItemSlice = createSlice({
       .addCase(fetchBookById.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(fetchBookById.fulfilled, (state, action: PayloadAction<BookDetailProps>) => {
+      .addCase(fetchBookById.fulfilled, (state, action) => {
         state.isLoading = false
         state.list = action.payload
       })
-      .addCase(fetchBookById.rejected, (state, action: PayloadAction<string | undefined>) => {
+      .addCase(fetchBookById.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload || 'Unknown error'
+        state.error = action.error.message ?? 'Unknown error'
       })
   }
 })

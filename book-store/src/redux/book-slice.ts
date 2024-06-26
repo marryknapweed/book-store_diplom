@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { requestBooks, requestBooksSearch } from '../services/book'
-import { BooksState, Book } from '../types/interfaces'
+import { BooksState } from '../types/interfaces'
 
 const initialState: BooksState = {
   list: [],
@@ -10,9 +10,9 @@ const initialState: BooksState = {
 }
 
 // Thunks
-export const fetchBooks = createAsyncThunk('books/fetchBooks', async (params = {}, { rejectWithValue }) => {
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejectWithValue }) => {
   try {
-    const data = await requestBooks(params)
+    const data = await requestBooks()
     return data.books // Возвращаем только массив книг
   } catch (error) {
     return rejectWithValue('Failed to fetch books')
@@ -45,9 +45,9 @@ export const bookSlice = createSlice({
         state.isLoading = false
         state.list = action.payload
       })
-      .addCase(fetchBooks.rejected, (state, action: PayloadAction<string | undefined>) => {
+      .addCase(fetchBooks.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload || 'Unknown error'
+        state.error = action.error.message ?? 'Unknown error'
       })
 
       .addCase(searchBooks.pending, (state) => {
@@ -61,7 +61,7 @@ export const bookSlice = createSlice({
       })
       .addCase(searchBooks.rejected, (state, action) => {
         state.isLoading = false
-        state.error = action.payload || 'Unknown error'
+        state.error = action.error.message ?? 'Unknown error'
       })
   }
 })

@@ -27,7 +27,7 @@ export function NewBooksPage () {
           <div key={book.isbn13} className="col">
             <CardBook
               key={book.isbn13}
-              isbn13={book.isbn13} // TODO: fix
+              isbn13={book.isbn13}
               title={book.title}
               subtitle={book.subtitle || ''}
               image={book.image}

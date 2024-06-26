@@ -18,9 +18,9 @@ export function Pagination ({ query, currentPage, pagesCount }: PaginationProps)
 
   return (
     <ul className="pagination">
-      <li className={`page-item__button ${currentPage === 1 ? 'disabled' : ''}`}>
+      <li className={`pagination__button ${currentPage === 1 ? 'disabled' : ''}`}>
         <NavLink
-          className="page-link__button"
+          className="pagination-link__button"
           to={`/search/${query}/${currentPage - 1}`}
         >
           <FaArrowLeftLong />
@@ -46,9 +46,9 @@ export function Pagination ({ query, currentPage, pagesCount }: PaginationProps)
           </div>
         ))}
       </li>
-      <li className={`page-item__button ${currentPage === pagesCount ? 'disabled' : ''}`}>
+      <li className={`pagination__button ${currentPage === pagesCount ? 'disabled' : ''}`}>
         <NavLink
-          className="page-link__button"
+          className="pagination-link__button"
           to={`/search/${query}/${currentPage + 1}`}
           aria-label="Next"
         >

@@ -24,7 +24,7 @@ export function CardBookBasketPage () {
   )
 
   return (
-    <div className="cart">
+    <div className="cart__basket">
       <Title>Shopping Cart</Title>
       {cartItems.length === 0
         ? (

@@ -5,16 +5,17 @@
   padding: 24px 0px;
   border-bottom: 1px solid #E7E7E7;
   z-index: 1;
+
+  &__logo {
+    color: #313037;
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__icons a {
+    color: #313037;
+    font-size: 20px;
+    padding: 16px;
+  }
 }
 
-.header__logo {
-  color: #313037;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.header__icons a {
-  color: #313037;
-  font-size: 20px;
-  padding: 16px;
-}

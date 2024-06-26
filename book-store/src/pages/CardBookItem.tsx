@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Title } from '../components/Title'
 import { CardBookItem } from '../components/cardBookItem'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'

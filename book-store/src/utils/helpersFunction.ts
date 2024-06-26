@@ -11,3 +11,8 @@ export const getImageBackgroundColor = (price: string) => {
     return '#F4EEFD' // Розовый фон для бесплатных книг
   }
 }
+
+export const isbnToId = (isbn13: string) => {
+  if (!isbn13) return ''
+  return isbn13
+}

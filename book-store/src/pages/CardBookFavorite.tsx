@@ -10,7 +10,7 @@ export function CardBookFavoritePage () {
   const favoriteItems = useSelector((state: RootState) => state.favorites.list)
 
   return (
-    <div className="cart">
+    <div className="cart__favorites">
       <Title>Favorites</Title>
 
       {favoriteItems.length === 0

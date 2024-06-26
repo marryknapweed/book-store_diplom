@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react'
 import './index.scss'
 import { CardBookProps } from '../../types/interfaces'
 import { Link } from 'react-router-dom'
-import { getImageBackgroundColor } from '../../utils/helpersFunction'
+import { getImageBackgroundColor, isbnToId } from '../../utils/helpersFunction'
 
 export const CardBook = ({ title, image, subtitle, price, isbn13 }: CardBookProps) => {
+  const id = isbnToId(isbn13)
+
   return (
-    <div className="new-book-card">
-      <Link to={`/books/${isbn13}`}>
-        <div className="new-book-card__image" style={{ backgroundColor: getImageBackgroundColor(price) }}>
+    <div className="card-book">
+      <Link to={`/books/${id}`}>
+        <div className="card-book__image" style={{ backgroundColor: getImageBackgroundColor(price.toString()) }}>
           <img src={image} alt="book" />
         </div>
-        <div className="new-book-card__info">
+        <div className="card-book__info">
           <h3 className="info__title">{title}</h3>
           <p className="info__subtitle">{subtitle}</p>
         </div>
       </Link>
-      <div className="new-book-card__price">
+      <div className="card-book__price">
         <p className="price__text">{price}</p>
       </div>
     </div>

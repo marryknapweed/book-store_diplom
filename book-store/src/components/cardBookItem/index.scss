@@ -1,133 +1,130 @@
-.books-item__content {
+.books-item {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-bottom: 72px;
-}
 
-.books-item__image {
-  width: 50%;
-  height: 472px;
-  margin-right: 100px;
-  background-color: #dedede;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-
-  img {
-    height: 100%;
-    object-fit: cover;
-
-  }
-
-  .books-item__favorite {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: #313037;
-    width: 56px;
-    height: 56px;
+  &__image {
+    width: 50%;
+    height: 472px;
+    margin-right: 100px;
+    background-color: #dedede;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    cursor: pointer;
-    color: #FFFFFF;
+    position: relative;
 
-    i {
-      color: inherit;
+    img {
+      height: 100%;
+      object-fit: cover;
+
     }
 
-    .favorite-card__icon-active {
-      color: red;
+    .books-item__favorite {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: #313037;
+      width: 56px;
+      height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      color: #FFFFFF;
+
+      .favorite-card__icon-active {
+        color: red;
+      }
     }
+
   }
 
-}
-
-.books-item__info {
-  flex-grow: 1;
-  border-top: 1px solid #E7E7E7;
-  padding-top: 41px ;
-  display: flex;
-  width: 50%;
-  flex-direction: column;
-}
-
-
-.books-item__price {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-
-  p {
-    font-size: 40px;
-    margin-bottom: 0px;
+  &__info {
+    flex-grow: 1;
+    border-top: 1px solid #E7E7E7;
+    padding-top: 41px ;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
   }
 
-  .books-detail__rating {
-    font-size: 25px;
-  }
-}
-
-.books-detail__details {
-  padding-left: 0px;
-  font-size: 20px;
-  text-align: right;
-
-  li {
+  &__price {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 
-    strong {
-      color: #A8A8A8;
-      width: 50%;
-      text-align: left;
+    p {
+      font-size: 40px;
+      margin-bottom: 0px;
+    }
 
-
+    .books-detail__rating {
+      font-size: 25px;
     }
   }
-}
 
-.books-detail__more-details {
-  align-self: flex-start;
-  margin-bottom: 30px;
-  font-family: 'Bebas Neue';
-  font-size: 24px;
-}
+  &__details {
+    padding-left: 0px;
+    font-size: 20px;
+    text-align: right;
 
-.books-detail__add-to-cart {
-  text-transform: uppercase;
-  font-family: 'Bebas Neue';
-  font-size: 24px;
-  color: #FFFFFF;
-  background-color: #313037;
-  padding: 16px 0px;
-  border: 2px solid transparent;
+    li {
+      display: flex;
+      justify-content: space-between;
 
-}
-
-.books-detail__preview {
-  font-size: 20px;
-  text-align: center;
-  margin-top: 20px;
-}
+      strong {
+        color: #A8A8A8;
+        width: 50%;
+        text-align: left;
 
 
+      }
+    }
+  }
 
-.books-detail {
-  display: flex;
-  width: 100%;
+  .books-detail {
+    margin-top: 30px;
 
-  .books-detail__button {
-    width: 50%;
-    text-transform: uppercase;
-    border: 2px solid #A8A8A8;
-    font-size: 24px;
-    font-family: 'Bebas Neue';
-    padding: 16px 0px;
+    &__show-more {
+      align-self: flex-start;
+      font-family: 'Bebas Neue';
+      font-size: 24px;
+    }
+
+    &__add-to-cart {
+      margin-top: 30px;
+      text-transform: uppercase;
+      font-family: 'Bebas Neue';
+      font-size: 24px;
+      color: #FFFFFF;
+      background-color: #313037;
+      padding: 16px 0px;
+      border: 2px solid transparent;
+    }
+
+    &__preview {
+      font-size: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+  }
+
+  .books-detail {
+    display: flex;
+    width: 100%;
+
+    .books-detail__button {
+      width: 50%;
+      text-transform: uppercase;
+      border: 2px solid #A8A8A8;
+      font-size: 24px;
+      font-family: 'Bebas Neue';
+      padding: 16px 0px;
+    }
   }
 }
 

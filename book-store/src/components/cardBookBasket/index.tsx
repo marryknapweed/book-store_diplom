@@ -6,48 +6,53 @@ import { useDispatch } from 'react-redux'
 import { removeItemFromCart, decrementQuantity, incrementQuantity } from '../../redux/cart-slice'
 import { AppDispatch } from '../../redux/store'
 import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorageUtils' // Импортируем утилиты
+import { isbnToId, getImageBackgroundColor } from '../../utils/helpersFunction'
 
-export const CardBookBasket = ({ title, image, subtitle, price, isbn13, quantity: initialQuantity }: CardBookProps) => {
-  const [quantity, setQuantity] = useState(initialQuantity) // Используем useState для отслеживания количества
+export const CardBookBasket = (props: CardBookProps) => {
+  const [quantity, setQuantity] = useState<number>(props.quantity ?? 1) // Используем useState для отслеживания количества
   const dispatch = useDispatch<AppDispatch>()
+
+  const id = isbnToId(props.isbn13)
 
   // При монтировании компонента извлекаем количество из localStorage
   useEffect(() => {
-    const storedQuantity = getFromLocalStorage<number>(`cart-${isbn13}`)
+    const storedQuantity = getFromLocalStorage<number>(`cart-${id}`)
     if (storedQuantity !== null) {
       setQuantity(storedQuantity)
     }
-  }, [isbn13])
+  }, [id])
 
   const decrementAmount = () => {
-    if (quantity > 1) {
+    if (quantity !== undefined && quantity > 1) {
       const updatedQuantity = quantity - 1
       setQuantity(updatedQuantity)
-      dispatch(decrementQuantity(isbn13))
-      setToLocalStorage(`cart-${isbn13}`, updatedQuantity) // Сохраняем обновленное значение в localStorage
+      dispatch(decrementQuantity(id))
+      setToLocalStorage(`cart-${id}`, updatedQuantity) // Сохраняем обновленное значение в localStorage
     }
   }
 
   const incrementAmount = () => {
-    const updatedQuantity = quantity + 1
-    setQuantity(updatedQuantity)
-    dispatch(incrementQuantity(isbn13))
-    setToLocalStorage(`cart-${isbn13}`, updatedQuantity) // Сохраняем обновленное значение в localStorage
+    if (quantity !== undefined) {
+      const updatedQuantity = quantity + 1
+      setQuantity(updatedQuantity)
+      dispatch(incrementQuantity(id))
+      setToLocalStorage(`cart-${id}`, updatedQuantity) // Сохраняем обновленное значение в localStorage
+    }
   }
 
   const handleRemoveFromCart = () => {
-    dispatch(removeItemFromCart(isbn13))
-    localStorage.removeItem(`cart-${isbn13}`) // Удаляем значение из localStorage при удалении товара из корзины
+    dispatch(removeItemFromCart(id))
+    localStorage.removeItem(`cart-${id}`) // Удаляем значение из localStorage при удалении товара из корзины
   }
 
   return (
     <div className="basket-card">
-      <div className="basket-card__image">
-        <img src={image} alt="book" />
+      <div className="basket-card__image" style={{ backgroundColor: getImageBackgroundColor(props.price.toString()) }}>
+        <img src={props.image} alt="book" />
       </div>
       <div className="basket-card__info">
-        <h3 className="info__title">{title}</h3>
-        <p className="info__subtitle">{subtitle}</p>
+        <h3 className="info__title">{props.title}</h3>
+        <p className="info__subtitle">{props.subtitle}</p>
         <div className="basket-card__amount">
           <IoRemove className="amount-button" onClick={decrementAmount} />
           <span className="amount">{quantity}</span>
@@ -55,10 +60,10 @@ export const CardBookBasket = ({ title, image, subtitle, price, isbn13, quantity
         </div>
       </div>
       <div className="basket-card__price">
-        <p className="price__text">{price}</p>
+        <p className="price__text">{props.price}</p>
       </div>
-
       <IoCloseOutline className="basket-card__remove" onClick={handleRemoveFromCart} />
+
     </div>
   )
 }

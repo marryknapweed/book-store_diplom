@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState, AppDispatch } from '../../redux/store'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 import { requestBooksSearchAPI } from '../../services/book'
 import { Book } from '../../types/interfaces'
+import { getImageBackgroundColor } from '../../utils/helpersFunction'
 import './index.scss'
 
-export const SearchForm: React.FC = () => {
+export const SearchForm = () => {
   const [search, setSearch] = useState('')
   const [autocompleteVisible, setAutocompleteVisible] = useState(false) // Локальное состояние для отображения автокомплита
   const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([]) // Локальное состояние для результатов поиска
@@ -49,13 +50,13 @@ export const SearchForm: React.FC = () => {
 
   const handleClickOutside = (event: MouseEvent) => {
     const target = event.target as HTMLElement
-    if (!target.closest('.header__search')) {
+    if (!target.closest('.search__container')) {
       setAutocompleteVisible(false)
     }
   }
 
-  const handleItemClick = (isbn: string) => {
-    navigate(`/books/${isbn}`)
+  const handleItemClick = (id: string) => {
+    navigate(`/books/${id}`)
     setSearch('')
     setAutocompleteVisible(false)
   }
@@ -88,7 +89,7 @@ export const SearchForm: React.FC = () => {
 
   return (
     <form className='search' onSubmit={handleSubmit}>
-      <div className='header__search'>
+      <div className='search__container'>
         <input
           type="text"
           placeholder="Search..."
@@ -104,7 +105,7 @@ export const SearchForm: React.FC = () => {
               : (
                   autocompleteResults.map((book) => (
                 <li key={book.isbn13} className="autocomplete__item" onClick={() => handleItemClick(book.isbn13)}>
-                  <div className="autocomplete__image">
+                  <div className="autocomplete__image" style={{ backgroundColor: getImageBackgroundColor(book.price) }}>
                     <img src={book.image} alt={book.title} />
                   </div>
                   <div className="title">{highlightSearchTerm(book.title)}</div>

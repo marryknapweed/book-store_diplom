@@ -10,8 +10,8 @@ import { Title } from '../components/Title'
 
 export const SearchResultsPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const { query, page } = useParams<{ query: string; page: string }>()
-  const currentPage = parseInt(page, 10) || 1 // Текущая страница, по умолчанию 1
+  const { query = '', page = '1' } = useParams<{ query: string; page: string }>() // По умолчанию query = '', page = '1'
+  const currentPage = parseInt(page, 10) // По умолчанию 1, если page неопределено
   const { list: books, isLoading, error, pagesCount } = useSelector((state: RootState) => state.books)
 
   useEffect(() => {

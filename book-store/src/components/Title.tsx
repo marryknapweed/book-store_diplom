@@ -7,7 +7,7 @@ export const Title = ({ children }: TitleProps) => {
     textTransform: 'uppercase' as const,
     fontSize: '56px',
     lineHeight: '64px',
-    marginBottom: '72px'
+    marginBottom: '50px'
   }
 
   return <h2 className='title' style={styles}>{children}</h2>

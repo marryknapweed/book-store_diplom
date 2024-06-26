@@ -8,11 +8,6 @@ export interface Book {
   authors: string[];
 }
 
-export interface FetchBooksResponse {
-  total: string;
-  page: string;
-  books: Book[];
-}
 export interface BookDetailProps extends Book {
   publisher: string;
   isbn10: string;
@@ -23,6 +18,7 @@ export interface BookDetailProps extends Book {
   pdf?: Record<string, string>;
   language: string,
   format: string
+  quantity?: number;
 }
 
 export interface BooksState {
@@ -36,17 +32,20 @@ export interface CardBookProps {
   title: string
   subtitle?: string
   image: string
-  price: string
+  price: number | string
   isbn13: string
-}
-
-export interface NewBooksListProps {
-  books: Book[];
+  quantity?: number;
 }
 
 export interface BookItemState {
   list: BookDetailProps | null;
   isLoading: boolean;
   error: string | null;
-  activeTab: BookDetailProps | null
+  activeTab: string | null
+}
+
+export interface CartSummaryProps {
+  sumTotal: number;
+  VAT: number;
+  total: number;
 }
