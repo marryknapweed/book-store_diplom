@@ -1,11 +1,6 @@
-
-
 .new-book-card {
-  // display: flex;
-  // flex-direction: column;
-  gap: 20px; /* Промежуток между изображением и информацией */
-  padding: 20px; /* Отступы внутри карточки */
-  // max-width: 352px; /* Устанавливаем максимальную ширину карточки */
+  gap: 20px;
+  padding: 20px;
   border: 1px solid #E7E7E7;
   height: 100%;
 }
@@ -27,15 +22,10 @@
 }
 
 .new-book-card__info {
-  display: flex; /* Используем flex для выравнивания по вертикали */
-  flex-direction: column; /* Располагаем элементы в колонку */
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
-
-  // display: grid;
-  // grid-template-rows: 1fr 1fr;
-  // height: 40%;
   gap: 8px;
-  // flex: 1;
 }
 
 .info__title {
@@ -56,7 +46,7 @@
 .new-book-card__price {
   display: flex;
   justify-content: space-between;
-  margin-top: auto; /* Перемещаем цену в самый низ */
+  margin-top: auto;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
   line-height: 32px;

@@ -9,6 +9,7 @@ const initialState: BooksState = {
   pagesCount: 1 // Инициализируем с 1 страницей по умолчанию
 }
 
+// Thunks
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async (params = {}, { rejectWithValue }) => {
   try {
     const data = await requestBooks(params)
@@ -18,7 +19,6 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (params = {
   }
 })
 
-// like
 export const searchBooks = createAsyncThunk(
   'books/searchBooks',
   async ({ query, page }: { query: string; page: number }, { rejectWithValue }) => {

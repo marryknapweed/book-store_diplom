@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState, AppDispatch } from '../../redux/store'
-import { requestBooksSearchAPI } from '../../services/book' // Импорт функции requestBooksSearchAPI
+import { requestBooksSearchAPI } from '../../services/book'
 import { Book } from '../../types/interfaces'
 import './index.scss'
 
 export const SearchForm: React.FC = () => {
   const [search, setSearch] = useState('')
   const [autocompleteVisible, setAutocompleteVisible] = useState(false)
-  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([]) // Локальное состояние для результатов поиска
+  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([])
   const navigate = useNavigate()
   const isLoading = useSelector((state: RootState) => state.books.isLoading)
 

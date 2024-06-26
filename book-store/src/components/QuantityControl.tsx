@@ -1,4 +1,3 @@
-// src/components/QuantityControl/index.tsx
 import React from 'react'
 import { IoAdd, IoRemove } from 'react-icons/io5'
 

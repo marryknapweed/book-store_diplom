@@ -7,7 +7,6 @@ interface CartItem extends BookDetailProps {
 }
 
 interface CartState {
-  // items: (BookDetailProps & { quantity: number })[];
   items: CartItem[];
 }
 
@@ -26,24 +25,24 @@ const cartSlice = createSlice({
       } else {
         state.items.push({ ...action.payload, quantity: 1 })
       }
-      setToLocalStorage('cart', state.items) // Сохраняем состояние в localStorage после изменений
+      setToLocalStorage('cart', state.items)
     },
     removeItemFromCart: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter(item => item.isbn13 !== action.payload)
-      setToLocalStorage('cart', state.items) // Сохраняем состояние в localStorage после изменений
+      setToLocalStorage('cart', state.items)
     },
     incrementQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.isbn13 === action.payload)
       if (item) {
         item.quantity++
-        setToLocalStorage('cart', state.items) // Сохраняем состояние в localStorage после изменений
+        setToLocalStorage('cart', state.items)
       }
     },
     decrementQuantity: (state, action: PayloadAction<string>) => {
       const item = state.items.find(item => item.isbn13 === action.payload)
       if (item && item.quantity > 1) {
         item.quantity--
-        setToLocalStorage('cart', state.items) // Сохраняем состояние в localStorage после изменений
+        setToLocalStorage('cart', state.items)
       }
     }
   }

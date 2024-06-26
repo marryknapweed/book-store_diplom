@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { RootState } from '../redux/store'
+import { RootState, AppDispatch } from '../redux/store'
 import { searchBooks } from '../redux/book-slice'
 import { Book } from '../types/interfaces'
 import { Pagination } from '../components/pagination'
 import { CardBook } from '../components/cardBook'
+import { Title } from '../components/Title'
 
 export const SearchResultsPage: React.FC = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const { query, page } = useParams<{ query: string; page: string }>()
   const currentPage = parseInt(page, 10) || 1 // Текущая страница, по умолчанию 1
   const { list: books, isLoading, error, pagesCount } = useSelector((state: RootState) => state.books)
@@ -45,9 +46,7 @@ export const SearchResultsPage: React.FC = () => {
 
   return (
     <div className="search-books">
-      <div className="search-books__title">
-        <h1>Search Results for «{query}»</h1>
-      </div>
+      <Title>«{query}» Search Results</Title>
       <div className="search-books__results">
         {renderBooks()}
       </div>

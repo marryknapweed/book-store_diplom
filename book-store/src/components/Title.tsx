@@ -7,7 +7,7 @@ export const Title = ({ children }: TitleProps) => {
     textTransform: 'uppercase' as const,
     fontSize: '56px',
     lineHeight: '64px',
-    margin: '72px 0 50px' // убрать сделать пединг у секции
+    marginBottom: '72px'
   }
 
   return <h2 className='title' style={styles}>{children}</h2>

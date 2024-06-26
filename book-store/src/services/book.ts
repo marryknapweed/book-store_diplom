@@ -6,11 +6,6 @@ async function requestBooks (params = {}) {
   return data
 }
 
-// async function requestBooksSearch (query: string) {
-//   const { data } = await client.get(`/search/${query}`)
-//   return data
-// }
-
 async function requestBooksSearch (query: string, page: number) {
   const { data } = await client.get(`/search/${query}/${page}`)
   return data

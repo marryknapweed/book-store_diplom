@@ -15,7 +15,6 @@ export function CardBookFavoritePage () {
 
       {favoriteItems.length === 0
         ? (
-      // <p>Your cart is empty</p>
           <EmptyState icon={FaHeart} text="Your favorites is empty" />
           )
         : (

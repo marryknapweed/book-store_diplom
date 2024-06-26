@@ -33,12 +33,10 @@
 .basket-card__amount {
   display: flex;
   align-items: center;
-  // margin-top: 8px;
   width: 168px;
   justify-content: space-between;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px;
-  // padding: 16px;
 
   .amount-button {
     background: none;
@@ -54,7 +52,7 @@
     cursor: pointer;
 
     .amount {
-      margin: 0 10px; // Adjust margin between buttons and amount text
+      margin: 0 10px;
     }
   }
 }

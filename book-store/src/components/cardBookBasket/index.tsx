@@ -49,19 +49,16 @@ export const CardBookBasket = ({ title, image, subtitle, price, isbn13, quantity
         <h3 className="info__title">{title}</h3>
         <p className="info__subtitle">{subtitle}</p>
         <div className="basket-card__amount">
-          {/* <button className="amount-button" onClick={decrementAmount}>-</button> */}
           <IoRemove className="amount-button" onClick={decrementAmount} />
           <span className="amount">{quantity}</span>
           <IoAdd className="amount-button" onClick={incrementAmount} />
-          {/* <button className="amount-button" onClick={incrementAmount}>+</button> */}
         </div>
       </div>
       <div className="basket-card__price">
         <p className="price__text">{price}</p>
       </div>
-      {/* <button className="basket-card__remove">Remove</button> */}
-      <IoCloseOutline className="basket-card__remove" onClick={handleRemoveFromCart} />
 
+      <IoCloseOutline className="basket-card__remove" onClick={handleRemoveFromCart} />
     </div>
   )
 }

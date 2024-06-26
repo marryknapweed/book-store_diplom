@@ -1,19 +1,9 @@
 import React, { useEffect } from 'react'
 import { Title } from '../components/Title'
-// import { NewBooksList } from '../components/newBooksList'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchBooks } from '../redux/book-slice'
 import { RootState, AppDispatch } from '../redux/store'
 import { CardBook } from '../components/cardBook'
-
-// export function NewBooksPage () {
-//   return (
-//     <>
-//       <Title>New Releases Books</Title>
-//       <NewBooksList />
-//     </>
-//   )
-// }
 
 export function NewBooksPage () {
   const dispatch = useDispatch<AppDispatch>()
@@ -33,7 +23,7 @@ export function NewBooksPage () {
     return (
       <>
         <div className='grid-container row row-cols-md-3 g-3'>
-          {books.map((book) => ( // TODO: fix
+          {books.map((book) => (
           <div key={book.isbn13} className="col">
             <CardBook
               key={book.isbn13}

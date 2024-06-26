@@ -49,5 +49,4 @@ export interface BookItemState {
   isLoading: boolean;
   error: string | null;
   activeTab: BookDetailProps | null
-  favorites: BookDetailProps[];
 }
