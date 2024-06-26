@@ -2,15 +2,10 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { buildPaginationScheme } from '../../utils/buildPaginationScheme'
 import { FaArrowLeftLong, FaArrowRightLong } from 'react-icons/fa6'
+import { PaginationProps } from '../../types/interfaces'
 import './index.scss'
 
-interface PaginationProps {
-  query: string; // Запрос для поиска книг
-  currentPage: number; // Текущая страница
-  pagesCount: number; // Общее количество страниц
-}
-
-export function Pagination ({ query, currentPage, pagesCount }: PaginationProps) {
+export const Pagination = ({ query, currentPage, pagesCount }: PaginationProps) => {
   if (pagesCount <= 1) return null
 
   // Генерируем схему пагинации

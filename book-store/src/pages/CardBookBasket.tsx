@@ -7,7 +7,7 @@ import { EmptyState } from '../components/EmptyState'
 import { FaShoppingCart } from 'react-icons/fa'
 import { CartSummary } from '../components/сartSummary'
 
-export function CardBookBasketPage () {
+export const CardBookBasketPage = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items)
 
   // Вычисляем суммарные значения

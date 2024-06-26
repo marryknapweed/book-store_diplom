@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { fetchBookById, setActiveTab } from '../redux/book-item-slice'
 import { RootState, AppDispatch } from '../redux/store'
 
-export function CardBookItemPage () {
+export const CardBookItemPage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { id: isbn13 } = useParams<{ id: string }>()
   const book = useSelector((state: RootState) => state.bookItem.list)

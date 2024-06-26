@@ -8,7 +8,7 @@ const containerStyle = {
   paddingBottom: '70px'
 }
 
-export function Layout () {
+export const Layout = () => {
   return (
     <>
       <Container>

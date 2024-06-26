@@ -5,7 +5,7 @@ import { fetchBooks } from '../redux/book-slice'
 import { RootState, AppDispatch } from '../redux/store'
 import { CardBook } from '../components/cardBook'
 
-export function NewBooksPage () {
+export const NewBooksPage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const books = useSelector((state: RootState) => state.books.list)
   const isLoading = useSelector((state: RootState) => state.books.isLoading)

@@ -1,10 +1,5 @@
 import React from 'react'
-import { IconType } from 'react-icons'
-
-interface EmptyStateProps {
-  icon: IconType;
-  text: string;
-}
+import { EmptyStateProps } from '../types/interfaces'
 
 const styles = {
   container: {

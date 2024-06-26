@@ -6,7 +6,7 @@ import { RootState } from '../redux/store'
 import { EmptyState } from '../components/EmptyState'
 import { FaHeart } from 'react-icons/fa'
 
-export function CardBookFavoritePage () {
+export const CardBookFavoritePage = () => {
   const favoriteItems = useSelector((state: RootState) => state.favorites.list)
 
   return (

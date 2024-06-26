@@ -11,7 +11,12 @@ export function buildPaginationScheme (currentPage: number, pagesCount: number):
     }
   } else {
     scheme = [1, prevPageNumber, currentPage, nextPageNumber, pagesCount]
-    const filteredScheme = scheme.filter(item => item > 0 && item <= pagesCount)
+    const filteredScheme = scheme.filter((item) => { // Фильтруем недопустимые значения
+      if (typeof item === 'number') { // Проверяем, является ли элемент числом
+        return item > 0 && item <= pagesCount
+      }
+      return true
+    })
     const set = new Set(filteredScheme)
     scheme = Array.from(set)
 

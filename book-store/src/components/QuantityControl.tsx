@@ -1,11 +1,6 @@
 import React from 'react'
 import { IoAdd, IoRemove } from 'react-icons/io5'
-
-interface QuantityControlProps {
-  quantity: number
-  onIncrement: () => void
-  onDecrement: () => void
-}
+import { QuantityControlProps } from '../types/interfaces'
 
 const styleControl = {
   display: 'flex',

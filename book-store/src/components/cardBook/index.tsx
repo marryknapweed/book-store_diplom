@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './index.scss'
 import { CardBookProps } from '../../types/interfaces'
 import { Link } from 'react-router-dom'

@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { requestBooksItem } from '../services/book'
-import { BookDetailProps, BookItemState } from '../types/interfaces'
+import { BookItemState } from '../types/interfaces'
 
 const initialState: BookItemState = {
   list: null,

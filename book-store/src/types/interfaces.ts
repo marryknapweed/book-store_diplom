@@ -1,3 +1,5 @@
+import { IconType } from 'react-icons'
+
 export interface Book {
   title: string;
   subtitle?: string;
@@ -48,4 +50,21 @@ export interface CartSummaryProps {
   sumTotal: number;
   VAT: number;
   total: number;
+}
+
+export interface EmptyStateProps {
+  icon: IconType;
+  text: string;
+}
+
+export interface QuantityControlProps {
+  quantity: number
+  onIncrement: () => void
+  onDecrement: () => void
+}
+
+export interface PaginationProps {
+  query: string; // Запрос для поиска книг
+  currentPage: number; // Текущая страница
+  pagesCount: number; // Общее количество страниц
 }

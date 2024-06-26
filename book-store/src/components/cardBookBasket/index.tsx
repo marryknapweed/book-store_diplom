@@ -63,7 +63,6 @@ export const CardBookBasket = (props: CardBookProps) => {
         <p className="price__text">{props.price}</p>
       </div>
       <IoCloseOutline className="basket-card__remove" onClick={handleRemoveFromCart} />
-
     </div>
   )
 }

@@ -8,7 +8,7 @@ import { Pagination } from '../components/pagination'
 import { CardBook } from '../components/cardBook'
 import { Title } from '../components/Title'
 
-export const SearchResultsPage: React.FC = () => {
+export const SearchResultsPage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { query = '', page = '1' } = useParams<{ query: string; page: string }>() // По умолчанию query = '', page = '1'
   const currentPage = parseInt(page, 10) // По умолчанию 1, если page неопределено
