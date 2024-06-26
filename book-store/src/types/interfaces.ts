@@ -36,7 +36,7 @@ export interface CardBookProps {
   title: string
   subtitle?: string
   image: string
-  price: number | string
+  price: string
   isbn13: string
 }
 

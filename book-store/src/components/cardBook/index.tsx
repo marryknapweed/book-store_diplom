@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './index.scss'
 import { CardBookProps } from '../../types/interfaces'
 import { Link } from 'react-router-dom'
+import { getImageBackgroundColor } from '../../utils/helpersFunction'
 
 export const CardBook = ({ title, image, subtitle, price, isbn13 }: CardBookProps) => {
   return (
     <div className="new-book-card">
       <Link to={`/books/${isbn13}`}>
-        <div className="new-book-card__image">
+        <div className="new-book-card__image" style={{ backgroundColor: getImageBackgroundColor(price) }}>
           <img src={image} alt="book" />
         </div>
         <div className="new-book-card__info">

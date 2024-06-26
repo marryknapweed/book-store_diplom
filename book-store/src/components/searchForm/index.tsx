@@ -8,8 +8,8 @@ import './index.scss'
 
 export const SearchForm: React.FC = () => {
   const [search, setSearch] = useState('')
-  const [autocompleteVisible, setAutocompleteVisible] = useState(false)
-  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([])
+  const [autocompleteVisible, setAutocompleteVisible] = useState(false) // Локальное состояние для отображения автокомплита
+  const [autocompleteResults, setAutocompleteResults] = useState<Book[]>([]) // Локальное состояние для результатов поиска
   const navigate = useNavigate()
   const isLoading = useSelector((state: RootState) => state.books.isLoading)
 
@@ -27,7 +27,7 @@ export const SearchForm: React.FC = () => {
         setAutocompleteVisible(false)
         setAutocompleteResults([]) // Очищаем результаты при пустом поисковом запросе
       }
-    }, 400)
+    }, 800)
 
     return () => clearTimeout(delayDebounceFn)
   }, [search])

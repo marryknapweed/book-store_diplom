@@ -6,8 +6,7 @@ export const Footer = () => {
     justifyContent: 'space-between',
     color: '#A8A8A8',
     borderTop: '1px solid #E7E7E7',
-    padding: '34px 0',
-    marginTop: '80px' // временно для отступа
+    padding: '34px 0'
   }
 
   return (
