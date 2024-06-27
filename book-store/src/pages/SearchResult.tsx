@@ -12,7 +12,7 @@ export const SearchResultsPage = () => {
   const dispatch = useDispatch<AppDispatch>()
   const { query = '', page = '1' } = useParams<{ query: string; page: string }>() // По умолчанию query = '', page = '1'
   const currentPage = parseInt(page, 10) // По умолчанию 1, если page неопределено
-  const { list: books, isLoading, error, pagesCount } = useSelector((state: RootState) => state.books)
+  const { list: books, isLoading, error, pagesCount, totalBooks } = useSelector((state: RootState) => state.books)
 
   useEffect(() => {
     if (query !== undefined && query !== '') {
@@ -47,6 +47,9 @@ export const SearchResultsPage = () => {
   return (
     <div className="search-books">
       <Title>«{query}» Search Results</Title>
+      <div className="search-books__count mb-4 fs-4 text-muted">
+        {`Found ${totalBooks} books`}
+      </div>
       <div className="search-books__results">
         {renderBooks()}
       </div>

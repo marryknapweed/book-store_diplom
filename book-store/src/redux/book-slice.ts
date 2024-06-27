@@ -6,7 +6,9 @@ const initialState: BooksState = {
   list: [],
   isLoading: false,
   error: null,
-  pagesCount: 1 // Инициализируем с 1 страницей по умолчанию
+  pagesCount: 1, // Инициализируем с 1 страницей по умолчанию
+  totalBooks: 0
+
 }
 
 // Thunks
@@ -58,6 +60,7 @@ export const bookSlice = createSlice({
         state.isLoading = false
         state.list = action.payload.books
         state.pagesCount = Math.ceil(action.payload.total / 10)
+        state.totalBooks = action.payload.total
       })
       .addCase(searchBooks.rejected, (state, action) => {
         state.isLoading = false

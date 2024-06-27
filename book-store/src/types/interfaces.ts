@@ -28,6 +28,7 @@ export interface BooksState {
   isLoading: boolean;
   error: string | null;
   pagesCount: number;
+  totalBooks: number
 }
 
 export interface CardBookProps {
