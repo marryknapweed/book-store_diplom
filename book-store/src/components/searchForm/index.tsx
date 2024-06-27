@@ -46,6 +46,7 @@ export const SearchForm = () => {
     }
     navigate(`/search/${search}`)
     setAutocompleteVisible(false)
+    setSearch('')
   }
 
   const handleClickOutside = (event: MouseEvent) => {

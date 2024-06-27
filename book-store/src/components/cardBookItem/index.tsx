@@ -11,7 +11,7 @@ import { FaRegHeart, FaHeart, FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import { QuantityControl } from '../QuantityControl'
 import { CardBook } from '../cardBook'
 import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorageUtils'
-import { isbnToId } from '../../utils/helpersFunction'
+import { getImageBackgroundColor, isbnToId } from '../../utils/helpersFunction'
 
 export const CardBookItem = (props: BookDetailProps) => {
   const [showMore, setShowMore] = useState(false)
@@ -108,7 +108,7 @@ export const CardBookItem = (props: BookDetailProps) => {
     <>
       <Title>{props.title}</Title>
       <div className="books-item">
-        <div className="books-item__image">
+        <div className="books-item__image" style={{ backgroundColor: getImageBackgroundColor(props.price) }}>
           <img src={props.image} alt={props.title} />
 
           <div className="books-item__favorite" onClick={handleToggleFavorite}>

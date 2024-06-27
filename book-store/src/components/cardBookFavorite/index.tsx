@@ -3,7 +3,8 @@ import { BookDetailProps } from '../../types/interfaces'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState, AppDispatch } from '../../redux/store'
 import { toggleItemInFavorites } from '../../redux/favorite-slice'
-import { getImageBackgroundColor } from '../../utils/helpersFunction'
+import { getImageBackgroundColor, isbnToId } from '../../utils/helpersFunction'
+import { Link } from 'react-router-dom'
 import './index.scss'
 
 export const CardBookFavorite = (props: BookDetailProps) => {
@@ -11,19 +12,24 @@ export const CardBookFavorite = (props: BookDetailProps) => {
   const favoriteItems = useSelector((state: RootState) => state.favorites.list)
   const isInFavorite = favoriteItems.some(item => item.isbn13 === props.isbn13)
 
+  const id = isbnToId(props.isbn13)
+
   const handleToggleFavorite = () => {
     dispatch(toggleItemInFavorites(props))
   }
 
   return (
     <div className="favorite-card">
-      <div className="favorite-card__image" style={{ backgroundColor: getImageBackgroundColor(props.price) }}>
-        <img src={props.image} alt="book" />
-      </div>
+      <Link to={`/books/${id}`}>
+        <div className="favorite-card__image" style={{ backgroundColor: getImageBackgroundColor(props.price) }}>
+          <img src={props.image} alt="book" />
+        </div>
+      </Link>
       <div className="favorite-card__info">
-        <h3 className="info__title">{props.title}</h3>
-        <p className="info__subtitle">{props.subtitle}</p>
-
+        <Link to={`/books/${id}`}>
+          <h3 className="info__title">{props.title}</h3>
+          <p className="info__subtitle">{props.subtitle}</p>
+        </Link>
         <div className="favorite-card__price">
           <p className="price__text">{props.price}</p>
           <div className="favorite-card__rating">

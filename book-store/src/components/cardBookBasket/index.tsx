@@ -7,6 +7,7 @@ import { removeItemFromCart, decrementQuantity, incrementQuantity } from '../../
 import { AppDispatch } from '../../redux/store'
 import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorageUtils' // Импортируем утилиты
 import { isbnToId, getImageBackgroundColor } from '../../utils/helpersFunction'
+import { Link } from 'react-router-dom'
 
 export const CardBookBasket = (props: CardBookProps) => {
   const [quantity, setQuantity] = useState<number>(props.quantity ?? 1) // Используем useState для отслеживания количества
@@ -47,21 +48,25 @@ export const CardBookBasket = (props: CardBookProps) => {
 
   return (
     <div className="basket-card">
-      <div className="basket-card__image" style={{ backgroundColor: getImageBackgroundColor(props.price.toString()) }}>
-        <img src={props.image} alt="book" />
-      </div>
-      <div className="basket-card__info">
-        <h3 className="info__title">{props.title}</h3>
-        <p className="info__subtitle">{props.subtitle}</p>
-        <div className="basket-card__amount">
-          <IoRemove className="amount-button" onClick={decrementAmount} />
-          <span className="amount">{quantity}</span>
-          <IoAdd className="amount-button" onClick={incrementAmount} />
+        <Link to={`/books/${id}`}>
+          <div className="basket-card__image" style={{ backgroundColor: getImageBackgroundColor(props.price.toString()) }}>
+            <img src={props.image} alt="book" />
+          </div>
+        </Link>
+        <div className="basket-card__info">
+          <Link to={`/books/${id}`}>
+            <h3 className="info__title">{props.title}</h3>
+            <p className="info__subtitle">{props.subtitle}</p>
+          </Link>
+          <div className="basket-card__amount">
+            <IoRemove className="amount-button" onClick={decrementAmount} />
+            <span className="amount">{quantity}</span>
+            <IoAdd className="amount-button" onClick={incrementAmount} />
+          </div>
         </div>
-      </div>
-      <div className="basket-card__price">
-        <p className="price__text">{props.price}</p>
-      </div>
+        <div className="basket-card__price">
+          <p className="price__text">{props.price}</p>
+        </div>
       <IoCloseOutline className="basket-card__remove" onClick={handleRemoveFromCart} />
     </div>
   )
