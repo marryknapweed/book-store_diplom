@@ -17,13 +17,8 @@ async function requestBooksItem (isbn13: string) {
 }
 
 async function requestBooksSearchAPI (query: string) {
-  try {
-    const data = await requestBooksSearch(query, 1)
-    return data.books // Возвращаем только данные книг
-  } catch (error) {
-    console.error('Error fetching search results:', error)
-    throw error // Перебрасываем ошибку для обработки выше
-  }
+  const data = await requestBooksSearch(query, 1)
+  return data.books // Возвращаем только данные книг
 }
 
 export { requestBooks, requestBooksSearch, requestBooksItem, requestBooksSearchAPI }
